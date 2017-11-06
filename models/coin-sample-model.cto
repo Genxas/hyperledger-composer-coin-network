@@ -1,0 +1,41 @@
+namespace com.genxas.coin.network
+
+participant User identified by id {
+  o String id
+  o String name
+}
+
+asset Vault identified by id {
+  o String id
+  o Double amount
+  --> User owner
+  o Transaction[] transactions optional
+}
+
+concept Transaction {
+  o Double amount
+  o TransactionType type
+}
+
+enum TransactionType {
+  o DEPOSIT
+  o WITHDRAW
+  o SEND
+  o RECEIVE
+}
+
+transaction DepositCoin {
+  --> Vault vault
+  o Double amount
+}
+
+transaction WithDrawCoin {
+  --> Vault vault
+  o Double amount
+}
+
+transaction TransferCoin {
+  --> Vault sender
+  --> Vault receiver
+  o Double amount
+}
