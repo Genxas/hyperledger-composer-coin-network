@@ -29,7 +29,7 @@ transaction DepositCoin {
   o Double amount
 }
 
-transaction WithDrawCoin {
+transaction WithdrawCoin {
   --> Vault vault
   o Double amount
 }
