@@ -9,15 +9,15 @@ asset Vault identified by id {
   o String id
   o Double amount
   --> User owner
-  o Transaction[] transactions optional
+  o CoinTransaction[] transactions optional
 }
 
-concept Transaction {
+concept CoinTransaction {
   o Double amount
-  o TransactionType type
+  o CoinTransactionType type
 }
 
-enum TransactionType {
+enum CoinTransactionType {
   o DEPOSIT
   o WITHDRAW
   o SEND
@@ -38,4 +38,8 @@ transaction TransferCoin {
   --> Vault sender
   --> Vault receiver
   o Double amount
+}
+
+event TransactionCompleted {
+  o String msg
 }
