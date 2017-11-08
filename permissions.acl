@@ -13,3 +13,29 @@ rule NetworkAdminSystem {
     resource: "org.hyperledger.composer.system.**"
     action: ALLOW
 }
+
+rule NetworkUserSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "com.genxas.coin.network.User"
+    operation: READ
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+rule SeeYourUser {
+  description: "See only your user"
+  participant(p): "com.genxas.coin.network.User"
+  operation: ALL
+  resource(r): "com.genxas.coin.network.User"
+  condition: (p.getIdentifier() == r.getIdentifier())
+  action: ALLOW
+}
+
+rule SeeYourVault {
+  description: "See only your vault"
+  participant(p): "com.genxas.coin.network.User"
+  operation: ALL
+  resource(r): "com.genxas.coin.network.Vault"
+  condition: (p.getIdentifier() == r.owner.getIdentifier())
+  action: ALLOW
+}
