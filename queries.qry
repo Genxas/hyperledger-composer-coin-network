@@ -1,0 +1,13 @@
+query VaultHasAmountMoreThanThousand {
+    description: "Select all vaults that has amount more than thoudsands coin"
+    statement:
+        SELECT com.genxas.coin.network.Vault
+            WHERE (amount > 1000)
+}
+
+query VaultHasAmountMoreThanParam {
+    description: "Select all vaults that has amount more than PARAM"
+    statement:
+        SELECT com.genxas.coin.network.Vault
+            WHERE (amount > _$amountParam)
+}
