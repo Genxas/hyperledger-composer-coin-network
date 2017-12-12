@@ -1,0 +1,1 @@
+composer-rest-server -c admin@genxas-coin-network -n never
